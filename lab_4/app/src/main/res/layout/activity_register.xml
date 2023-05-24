@@ -5,7 +5,12 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    tools:context=".Register">
+    <ProgressBar
+        android:id="@+id/progressBar"
+        android:visibility="gone"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
 
     <androidx.cardview.widget.CardView
         android:id="@+id/card"
@@ -52,29 +57,80 @@
         android:id="@+id/header"/>
 
     <TextView
-        android:text="Username"
+        android:text="Fullname"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textSize="20dp"
         android:layout_below="@id/header"
         android:layout_marginHorizontal="16dp"
-        android:layout_marginTop="80dp"
-        android:id="@+id/username"
+        android:layout_marginTop="40dp"
+        android:id="@+id/txt_fullname"
         />
 
     <EditText
-        android:id="@+id/usernameEditText"
+        android:id="@+id/fullname"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="16dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="10dp"
+        android:hint="Please enter Fullname"
+        android:inputType="text"
+        android:textColor="@android:color/black"
+        android:textSize="20sp"
+        android:padding="12dp"
+        android:background="@drawable/edittext_background"
+        android:layout_below="@id/txt_fullname"
+        android:layout_centerHorizontal="true" />
+    <TextView
+        android:text="Phone"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="20dp"
+        android:layout_below="@id/fullname"
+        android:layout_marginHorizontal="16dp"
+        android:layout_marginTop="25dp"
+        android:id="@+id/txt_phone"
+        />
+
+    <EditText
+        android:id="@+id/phone"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="16dp"
+        android:layout_marginTop="10dp"
+        android:hint="Please enter Phone"
+        android:inputType="text"
+        android:textColor="@android:color/black"
+        android:textSize="20sp"
+        android:padding="12dp"
+        android:background="@drawable/edittext_background"
+        android:layout_below="@id/txt_phone"
+        android:layout_centerHorizontal="true"/>
+
+    <TextView
+        android:text="Username"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="20dp"
+        android:layout_below="@id/phone"
+        android:layout_marginHorizontal="16dp"
+        android:layout_marginTop="25dp"
+        android:id="@+id/txt_username"
+        />
+
+    <EditText
+        android:id="@+id/username"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="16dp"
+        android:layout_marginTop="10dp"
         android:hint="Please enter Username"
         android:inputType="text"
         android:textColor="@android:color/black"
         android:textSize="20sp"
-        android:padding="15dp"
+        android:padding="12dp"
         android:background="@drawable/edittext_background"
-        android:layout_below="@id/username"
+        android:layout_below="@id/txt_username"
         android:layout_centerHorizontal="true"/>
 
     <TextView
@@ -82,34 +138,35 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textSize="20dp"
-        android:layout_below="@id/usernameEditText"
+        android:layout_below="@id/username"
         android:layout_marginHorizontal="16dp"
-        android:layout_marginTop="30dp"
-        android:id="@+id/password"
+        android:layout_marginTop="25dp"
+        android:id="@+id/txt_password"
         />
 
     <EditText
-        android:id="@+id/passwordEditText"
+        android:id="@+id/password"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="16dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="10dp"
         android:hint="Please enter Password"
         android:inputType="text"
         android:textColor="@android:color/black"
         android:textSize="20sp"
-        android:padding="15dp"
+        android:padding="12dp"
         android:background="@drawable/edittext_background"
-        android:layout_below="@id/password"
+        android:layout_below="@id/txt_password"
         android:layout_centerHorizontal="true"/>
 
+
     <Button
-        android:id="@+id/button"
+        android:id="@+id/btn_register"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Login"
-        android:layout_below="@id/passwordEditText"
-        android:layout_marginTop="40dp"
+        android:text="Sign in"
+        android:layout_below="@id/password"
+        android:layout_marginTop="30dp"
         android:layout_centerHorizontal="true"
         android:backgroundTint="@color/blue"
         />
@@ -117,20 +174,18 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
-        android:layout_below="@id/button"
-        android:paddingTop="15dp">
+        android:layout_below="@id/btn_register"
+        android:paddingTop="10dp">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Don't have an account?" />
+            android:text="back to" />
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text=" Sign up"
+            android:text=" Login"
             android:textColor="@color/black"
-            />
+            android:id="@+id/loginNow"/>
     </LinearLayout>
-
-
 </RelativeLayout>

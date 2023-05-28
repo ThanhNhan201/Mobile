@@ -9,6 +9,7 @@ import android.util.Patterns;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -29,6 +30,7 @@ public class Register extends AppCompatActivity {
     private EditText usernameEditText;
     private EditText passwordEditText;
     private Button registerButton;
+    ProgressBar processBar;
     private TextView loginRedirectText;
 
 
@@ -37,6 +39,7 @@ public class Register extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
+        getSupportActionBar().hide();
 
         auth = FirebaseAuth.getInstance();
         fullnameEditText = findViewById(R.id.fullname);
@@ -45,7 +48,7 @@ public class Register extends AppCompatActivity {
         passwordEditText = findViewById(R.id.password);
         registerButton = findViewById(R.id.btn_register);
         loginRedirectText = findViewById(R.id.loginNow);
-
+        processBar = findViewById(R.id.progressBar);
 
         registerButton.setOnClickListener(new View.OnClickListener() {
             private void saveUserDataToDatabase(String userId, String phone, String fullname) {
@@ -58,10 +61,12 @@ public class Register extends AppCompatActivity {
 
             @Override
             public void onClick(View view) {
-                String email =  EmailUtils.generateRandomEmail();
+                processBar.setVisibility(View.VISIBLE);
+//                String email =  EmailUtils.generateRandomEmail();
                 String fullname = fullnameEditText.getText().toString().trim();
                 String phone = phoneEditText.getText().toString().trim();
                 String username = usernameEditText.getText().toString().trim();
+                String email = username + "@gmail.com";
                 String password = passwordEditText.getText().toString().trim();
 
 
@@ -76,6 +81,8 @@ public class Register extends AppCompatActivity {
                 if (username.isEmpty()) {
                     usernameEditText.setError("Username cannot empty!");
                 }
+
+//                if (length(username) < 6)
 
                 if (password.isEmpty()) {
                     passwordEditText.setError("Password cannot empty!");

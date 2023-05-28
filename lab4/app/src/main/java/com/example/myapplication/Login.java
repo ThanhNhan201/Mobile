@@ -40,14 +40,15 @@ public class Login extends AppCompatActivity {
             public void onClick(View view) {
                 String username = usernameEditText.getText().toString();
                 String password = passwordEditText.getText().toString();
+                String email = username + "@gmail.com";
 
                 if (!username.isEmpty()){
-                    auth.signInWithEmailAndPassword(username, password)
+                    auth.signInWithEmailAndPassword(email, password)
                             .addOnSuccessListener(new OnSuccessListener<AuthResult>() {
                                 @Override
                                 public void onSuccess(AuthResult authResult) {
                                     Toast.makeText(Login.this, "Login Successful", Toast.LENGTH_LONG).show();
-                                    startActivity(new Intent(Login.this, Register.class));
+                                    startActivity(new Intent(Login.this, MainActivity.class));
                                     finish();
                                 }
                             }).addOnFailureListener(new OnFailureListener() {

@@ -4,8 +4,13 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 import android.view.View;
+import android.view.animation.AlphaAnimation;
 import android.view.animation.Animation;
+import android.view.animation.AnimationSet;
 import android.view.animation.AnimationUtils;
+import android.view.animation.RotateAnimation;
+import android.view.animation.ScaleAnimation;
+import android.view.animation.TranslateAnimation;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.Toast;
@@ -78,6 +83,130 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
+    private void handleClickAnimationCode(Button btn, final Animation animation) {
+
+        // Handle onclickListenner to start animation
+        btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ivUitLogo.startAnimation(animation);
+            }
+        });
+
+    }
+
+    private Animation initFadeOutAnimation() {
+        AlphaAnimation animation = new AlphaAnimation(1f, 0f);
+        animation.setDuration(3000);
+        animation.setFillAfter(true);
+        animation.setAnimationListener(animationListener);
+        return animation;
+    }
+
+    private Animation initFadeInAnimation() {
+        AlphaAnimation animation = new AlphaAnimation(0f, 1f);
+        animation.setDuration(3000);
+        animation.setFillAfter(true);
+        animation.setAnimationListener(animationListener);
+        return animation;
+    }
+
+    private Animation initBlinkAnimation() {
+        AlphaAnimation animation = new AlphaAnimation(0f, 1f);
+        animation.setDuration(250);
+        animation.setRepeatMode(animation.REVERSE);
+        animation.setRepeatCount(3);
+        animation.setAnimationListener(animationListener);
+        return animation;
+    }
+
+    private Animation initZoomInAnimation() {
+        Animation animation = new ScaleAnimation(0f, 1f, 0f, 1f, Animation.RELATIVE_TO_SELF, 0.5f, Animation.RELATIVE_TO_SELF, 0.5f);
+        animation.setDuration(3000);
+        animation.setFillAfter(true);
+        animation.setAnimationListener(animationListener);
+        return animation;
+    }
+
+    private Animation initZoomOutAnimation() {
+        Animation animation = new ScaleAnimation(1f, 0f, 1f, 0f, Animation.RELATIVE_TO_SELF, 0.5f, Animation.RELATIVE_TO_SELF, 0.5f);
+        animation.setDuration(3000);
+        animation.setFillAfter(true);
+        animation.setAnimationListener(animationListener);
+        return animation;
+    }
+
+    private Animation initRotateAnimation() {
+        Animation animation = new RotateAnimation(0f, 360f, Animation.RELATIVE_TO_SELF, 0.5f, Animation.RELATIVE_TO_SELF, 0.5f);
+        animation.setDuration(3000);
+        animation.setFillAfter(true);
+        animation.setAnimationListener(animationListener);
+        return animation;
+    }
+
+    private Animation initMoveAnimation() {
+        Animation animation = new TranslateAnimation(Animation.RELATIVE_TO_SELF, 0f, Animation.RELATIVE_TO_SELF, 1f, Animation.RELATIVE_TO_SELF, 0f, Animation.RELATIVE_TO_SELF, 0f);
+        animation.setDuration(3000);
+        animation.setFillAfter(true);
+        animation.setAnimationListener(animationListener);
+        return animation;
+    }
+
+    private Animation initSlideUpAnimation() {
+        Animation animation = new TranslateAnimation(Animation.RELATIVE_TO_SELF, 0f, Animation.RELATIVE_TO_SELF, 0f, Animation.RELATIVE_TO_SELF, 1f, Animation.RELATIVE_TO_SELF, 0f);
+        animation.setDuration(3000);
+        animation.setFillAfter(true);
+        animation.setAnimationListener(animationListener);
+        return animation;
+    }
+
+    private Animation initBounceAnimation() {
+        AnimationSet animationSet = new AnimationSet(true);
+
+        ScaleAnimation scaleAnimation = new ScaleAnimation(
+                1.0f, 1.0f,   // Start and end scale for the width
+                0.0f, 1.0f,   // Start and end scale for the height
+                Animation.RELATIVE_TO_SELF, 0.5f,   // Pivot point (X-axis)
+                Animation.RELATIVE_TO_SELF, 0.5f    // Pivot point (Y-axis)
+        );
+        scaleAnimation.setDuration(500); // Duration of the animation in milliseconds
+
+        animationSet.addAnimation(scaleAnimation);
+
+        return animationSet;
+    }
+
+
+    private Animation initCombinedAnimation() {
+        AnimationSet animationSet = new AnimationSet(true);
+
+        // Scale Animation
+        ScaleAnimation scaleAnimation = new ScaleAnimation(
+                1.0f, 3.0f,   // Start and end scale for the width
+                1.0f, 3.0f,   // Start and end scale for the height
+                Animation.RELATIVE_TO_SELF, 0.5f,   // Pivot point (X-axis)
+                Animation.RELATIVE_TO_SELF, 0.5f    // Pivot point (Y-axis)
+        );
+        scaleAnimation.setDuration(4000); // Duration of the scale animation in milliseconds
+
+        // Rotate Animation
+        RotateAnimation rotateAnimation = new RotateAnimation(
+                0.0f, 360.0f,   // Start and end rotation angles
+                Animation.RELATIVE_TO_SELF, 0.5f,   // Pivot point (X-axis)
+                Animation.RELATIVE_TO_SELF, 0.5f    // Pivot point (Y-axis)
+        );
+        rotateAnimation.setDuration(500); // Duration of the rotate animation in milliseconds
+        rotateAnimation.setRepeatCount(2); // Number of times the rotation should repeat
+        rotateAnimation.setRepeatMode(Animation.RESTART); // Repeat mode for the rotation animation
+
+        animationSet.addAnimation(scaleAnimation);
+        animationSet.addAnimation(rotateAnimation);
+
+        return animationSet;
+    }
+
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -98,5 +227,19 @@ public class MainActivity extends AppCompatActivity {
         handleClickAnimationXml(btnBounceXml, R.anim.anim_bounce);
         handleClickAnimationXml(btnCombineXml, R.anim.anim_combine);
 
+
+        // HandleClickAnimationCode
+        handleClickAnimationCode(btnFadeInCode, initFadeInAnimation());
+        handleClickAnimationCode(btnFadeOutCode, initFadeOutAnimation());
+        handleClickAnimationCode(btnBlinkCode, initBlinkAnimation());
+        handleClickAnimationCode(btnZoomInCode, initZoomInAnimation());
+        handleClickAnimationCode(btnZoomOutCode, initZoomOutAnimation());
+        handleClickAnimationCode(btnRotateCode, initRotateAnimation());
+        handleClickAnimationCode(btnMoveCode, initMoveAnimation());
+        handleClickAnimationCode(btnSlideUpCode, initSlideUpAnimation());
+        handleClickAnimationCode(btnBounceCode, initBounceAnimation());
+        handleClickAnimationCode(btnCombineCode, initCombinedAnimation());
+
     }
+
 }

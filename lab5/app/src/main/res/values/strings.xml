@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">lab5</string>
-    <string name="from_xml" >FROM XML</string>
-    <string name="from_code" >FROM CODE</string>
+    <string name="from_xml">FROM XML</string>
+    <string name="from_code">FROM CODE</string>
     <string name="fade_in">FADE IN</string>
     <string name="fade_out">FADE OUT</string>
     <string name="blink">BLINK</string>

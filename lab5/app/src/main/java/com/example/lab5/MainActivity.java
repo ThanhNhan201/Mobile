@@ -2,6 +2,7 @@ package com.example.lab5;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.view.animation.AlphaAnimation;
@@ -239,6 +240,15 @@ public class MainActivity extends AppCompatActivity {
         handleClickAnimationCode(btnSlideUpCode, initSlideUpAnimation());
         handleClickAnimationCode(btnBounceCode, initBounceAnimation());
         handleClickAnimationCode(btnCombineCode, initCombinedAnimation());
+
+        ivUitLogo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MainActivity.this, pinkActivity.class);
+                startActivity(intent);
+                overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
+            }
+        });
 
     }
 
